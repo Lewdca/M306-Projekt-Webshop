@@ -1,67 +1,57 @@
-  --IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'Webshoppu')
-    CREATE DATABASE Webshoppu
+--IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'Webshoppu')
+    USE [master]
+    GO
+    DROP DATABASE IF EXISTS Webshop
+    GO
+    CREATE DATABASE Webshop
     go
-    Use Webshoppu;
+    Use Webshop;
     go
-
-    CREATE TABLE Hersteller (
+    CREATE TABLE Manufacturer (
         ID INT IDENTITY(1,1) NOT NULL,
         [Name] VARCHAR(max) NOT NULL,
-
-        CONSTRAINT PK_Hersteller PRIMARY KEY (ID)
+        CONSTRAINT PK_Manufacturer PRIMARY KEY (ID)
     )
-
-
-    CREATE TABLE Kategorie (
+    CREATE TABLE Categorie (
         ID INT IDENTITY(1,1) NOT NULL,
         [Name] VARCHAR(max) NOT NULL,
-
-        CONSTRAINT PK_Kategorie PRIMARY KEY (ID)
+        CONSTRAINT PK_Categorie PRIMARY KEY (ID)
     )
-
     CREATE TABLE Person (
         ID INT IDENTITY(1,1) NOT NULL,
         [Name] VARCHAR(max) NOT NULL,
         Nachname VARCHAR(max) NOT NULL,
         EMail VARCHAR(max) NOT NULL,
         Adresse VARCHAR(max) NOT NULL,
-
         CONSTRAINT PK_Person PRIMARY KEY (ID)
     )
-
-    CREATE TABLE Mitarbeiter (
+    CREATE TABLE Employee (
         ID INT IDENTITY(1,1) NOT NULL,
         FkPerson INT NOT NULL,
         Loeschberechtigt BIT,
         Schreibberechtigt BIT,
-
-        CONSTRAINT PK_Mitarbeiter PRIMARY KEY (ID),
+        CONSTRAINT PK_Employee PRIMARY KEY (ID),
         CONSTRAINT FK_Person FOREIGN KEY (FkPerson) REFERENCES Person(ID)
     )
-
-    CREATE TABLE Produkt (
+    CREATE TABLE Product (
         ID INT IDENTITY(1,1) NOT NULL,
         [Name] VARCHAR(max) NOT NULL,
         Beschrieb VARCHAR(max),
         Preis DECIMAL NOT NULL,
-        FkHersteller INT NOT NULL,
-        FkKategorie INT NOT NULL,
-
+        FkManufacturer INT NOT NULL,
+        FkCategorie INT NOT NULL,
         Created DATETIME2(2) NULL,
         CreatedFrom INT NULL,
         Modified DATETIME2(2) NULL,
         ModifiedFrom INT NULL,
-
-        CONSTRAINT PK_Produkt PRIMARY KEY (ID),
-        CONSTRAINT FK_Hersteller FOREIGN KEY (FkHersteller) REFERENCES Hersteller(ID)
+        CONSTRAINT PK_Product PRIMARY KEY (ID),
+        CONSTRAINT FK_Manufacturer FOREIGN KEY (FkManufacturer) REFERENCES Manufacturer(ID)
     )
-
-    CREATE TABLE Bestellung (
+    CREATE TABLE [Order] (
         ID INT IDENTITY(1,1) NOT NULL,
-        FkProdukt INT NOT NULL,
+        FkProduct INT NOT NULL,
         FkPerson INT NOT NULL,
-
-        CONSTRAINT PK_Bestellung PRIMARY KEY (ID),
-        CONSTRAINT FK_PersonBestellung FOREIGN KEY (FkPErson) REFERENCES Person(ID),
-        CONSTRAINT FK_ProduktBestellung FOREIGN KEY (fkProdukt) REFERENCES Produkt(ID)
+        CONSTRAINT PK_Order PRIMARY KEY (ID),
+        CONSTRAINT FK_PersonOrder FOREIGN KEY (FkPerson) REFERENCES Person(ID),
+        CONSTRAINT FK_ProductOrder FOREIGN KEY (FkProduct) REFERENCES Product(ID)
     )
