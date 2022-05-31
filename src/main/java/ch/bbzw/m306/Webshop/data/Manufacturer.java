@@ -1,4 +1,4 @@
-package ch.bbzw.m306.websho.data;
+package ch.bbzw.m306.Webshop.data;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,18 +12,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Bestellung")
-public class Bestellung {
+@Table(name = "Manufacturer")
+public class Manufacturer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Produkt produkt; 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Person person; 
+    @Column(name = "Name")
+    private String manufacturerName;
 }
 

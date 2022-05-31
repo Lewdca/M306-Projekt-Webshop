@@ -1,4 +1,4 @@
-package ch.bbzw.m306.websho.data;
+package ch.bbzw.m306.Webshop.data;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Kategorie")
-public class Kategorie {
+@Table(name = "Categorie")
+public class Categorie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,6 @@ public class Kategorie {
     private Long id;
 
     @Column(name = "Name")
-    private String kategorieName;
+    private String categorieName;
 }
 

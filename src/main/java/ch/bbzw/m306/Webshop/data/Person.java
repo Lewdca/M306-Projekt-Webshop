@@ -1,4 +1,4 @@
-package ch.bbzw.m306.websho.data;
+package ch.bbzw.m306.Webshop.data;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,7 +26,7 @@ public class Person {
     @Column(name = "EMail")
     private String email;
 
-    @Column(name = "Adresse")
+    @Column(name = "Adress")
     private String adress;
     
 }

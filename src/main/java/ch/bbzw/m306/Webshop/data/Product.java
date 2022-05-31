@@ -1,4 +1,4 @@
-package ch.bbzw.m306.websho.data;
+package ch.bbzw.m306.Webshop.data;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "Produkt")
-public class Produkt {
+@Table(name = "Product")
+public class Product {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +24,8 @@ public class Produkt {
     @Column(name = "Name")
     private String name;
 
-    @Column(name = "Beschrieb")
-    private String beschrieb;
+    @Column(name = "Description")
+    private String description;
 
     @Column(name = "Created")
     private Date created;
@@ -38,5 +38,11 @@ public class Produkt {
     
     @Column(name = "ModifiedFrom")
     private int modifiedFrom;
+
+    @Column(name = "FkManufacturer")
+    private Manufacturer fkManufacturer;
+
+    @Column(name = "FKCategorie")
+    private Categorie fkCategorie;
     
 }
