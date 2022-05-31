@@ -27,6 +27,9 @@ public class Product {
     @Column(name = "Description")
     private String description;
 
+    @Column(name = "Price")
+    private float price;
+
     @Column(name = "Created")
     private Date created;
 
@@ -38,6 +41,7 @@ public class Product {
     
     @Column(name = "ModifiedFrom")
     private int modifiedFrom;
+
 
     @Column(name = "FkManufacturer")
     private Manufacturer fkManufacturer;
